@@ -33,4 +33,4 @@
 workspace.code-workspace
 backend/podcast_finder/podcast_finder/settings.py
 backend/podcast_finder/finder/credentials.py
-/lib/python3.7
+/lib/python3.7/
