@@ -6,7 +6,6 @@ from finder.models import Podcast
 # Create your views here.
 class PodcastListView(generic.ListView):
     model = Podcast
-    paginate_by = 3
+    paginate_by = 5
     template_name = 'paginator/pagination.html'  
-    context_object_name = 'objects'
     queryset = Podcast.objects.all()

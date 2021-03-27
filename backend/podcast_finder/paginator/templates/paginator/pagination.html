@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block pagination %}
+<div class = "row row-cols-3 justify-center" id = "pod_cards">
+    {% for object in page_obj %}
+        <div class = "col-3 m1">
+            <div class = "card bg-light" style = "width: 18rem;">
+                <div class = "card-body">
+                    <h5 class = "card-title">{{ object.publisher }}</h5>
+                    <h6 class = "card-subtitle mb-2 text-muted">{{ object.name }}</h6>
+                    <p class = "card-text">{{ object.description }}</p>
+                    <p class = "card-text">{{ object.show_type }}</p>
+                </div>
+            </div>
+        </div>    
+    
+        {% if forloop.counter|divisibleby:4 %}<div class="w-100 d-none d-md-block"></div>{% endif %}
+    {% endfor %}
+</div>
+{% endblock pagination %}

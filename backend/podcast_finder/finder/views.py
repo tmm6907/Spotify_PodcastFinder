@@ -1,4 +1,3 @@
-from django.shortcuts import render
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -7,8 +6,6 @@ from rest_framework import status
 from .serializers import PodcastSerializer, AuthTokenSerializer
 from .models import Podcast
 from requests import Request, post
-
-import requests
 import os
 
 #Global Variables
@@ -16,11 +13,9 @@ client_id = os.environ.get('CLIENT_ID')
 client_secret = os.environ.get('CLIENT_SECRET')
 uri = os.environ.get('REDIRECT_URI')
 
-
 # Create your views here.
 class AuthURL(APIView):
     def get(self, request, format = None):
-        
         url = Request('GET', 'https://accounts.spotify.com/authorize', params= {
             'client_id': client_id,
             'response_type': 'code',
@@ -37,10 +32,8 @@ class AuthURL(APIView):
             'client_id'             : client_id,
             'client_secret'         : client_secret,
         }).json()
-
         if not request.session.exists(request.session.session_key):
             request.session.create()
-        
         ds = {
         'user'                      : request.session.session_key,
         'access_token'              : response.get('access_token'),
@@ -54,12 +47,6 @@ class AuthURL(APIView):
             serializer.save()
         else:
             return Response(serializer.errors)
-def home_view(request):
-    objs = Podcast.objects.all
-    context = {
-        'objects': objs
-    }  
-    return render(request, 'finder/pagination.html', context)
 
 
 
