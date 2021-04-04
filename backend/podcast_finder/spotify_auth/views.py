@@ -2,10 +2,10 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from requests import Request, post
 
 from .serializers import AuthTokenSerializer
-from .models import Podcast
-from requests import Request, post
+
 import os
 
 #Global Variables
