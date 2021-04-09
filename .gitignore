@@ -31,6 +31,6 @@
 *.out
 *.app
 workspace.code-workspace
-backend/podcast_finder/podcast_finder/settings.py
-backend/podcast_finder/finder/credentials.py
-/lib/python3.7/
+backend/podcast_finder/spotify_api/hidden.py
+backend/podcast_finder/spotify_api/query.py
+

@@ -1,0 +1,18 @@
+{% extends 'paginator/base.html' %}
+
+{% block pagination %}
+<div class = "row justify-center" id = "pod_cards">
+    {% for object in page_obj %}
+        <div class = "col-auto">
+            <div class = "card bg-light mb-2" style = "width: 18rem;">
+                <div class = "card-body">
+                    <h5 class = "card-title">{{ object.publisher }}</h5>
+                    <h6 class = "card-subtitle mb-2 text-muted">{{ object.name }}</h6>
+                    <p class = "card-text">{{ object.description }}</p>
+                    <p class = "card-text">{{ object.show_type }}</p>
+                </div>
+            </div>
+        </div>    
+    {% endfor %}
+</div>
+{% endblock pagination %}
