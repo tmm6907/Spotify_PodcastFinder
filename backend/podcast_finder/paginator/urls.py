@@ -16,8 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from .views import PodcastListView
+from .views import ShowListView
 
 urlpatterns = [
-    path('', PodcastListView.as_view()),  
+    path('', ShowListView.as_view()),  
 ]

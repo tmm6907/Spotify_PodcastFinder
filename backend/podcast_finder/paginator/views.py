@@ -4,8 +4,8 @@ from django.core.paginator import Paginator
 from spotify_api.models import Show
 
 # Create your views here.
-class PodcastListView(generic.ListView):
+class ShowListView(generic.ListView):
     model = Show
-    paginate_by = 25
+    paginate_by = 100
     template_name = 'paginator/pagination.html'  
     queryset = Show.objects.all()

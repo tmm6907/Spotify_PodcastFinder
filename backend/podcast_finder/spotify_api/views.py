@@ -1,19 +1,20 @@
-from django.shortcuts import render
-from .searchwords import search_words
-from rest_framework.views import ListAPIView
-from rest_framework.response import Response
-from requests import Request
-from .utils import get_show_handler
-from finder.serializers import PodcastSerializer
-from finder.models import AuthToken
+
+from .query import query
+from .tasks import search_shows
+
+#Global Variables
+OFFSET_LIMIT = 998
 
 # Create your views here.
+def search_handler(request):
+    search_list = query
+    for item in search_list:
+        offset = 0
+        while offset<OFFSET_LIMIT:
+            search_shows(item, offset)
+            offset+=1
+            search_shows(item, offset)
+            offset+=1
+            
+    
 
-#Global variables
-search_list = search_words
-
-class SpotifyAPIView(ListAPIView):
-
-    def get(self, request, *args, **kwargs):
-        
-        return self.list(request, *args, **kwargs)
