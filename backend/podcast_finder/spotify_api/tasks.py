@@ -2,34 +2,23 @@ from requests import Request
 from rest_framework.response import Response
 from rest_framework import status
 from background_task import background
-from finder.models import AuthToken
-
+import os
 from .....Spotify_PodcastFinder import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
-from finder.serializers import ShowSerializer, EpisodeSerializer
 
-import os
+from spotify_api.serializers import ShowSerializer, EpisodeSerializer
 
 #Global Declarations
 LIMIT = 50
 MARKET = 'US'
-client_id = os.environ.get('CLIENT_ID')
-client_secret = os.environ.get('CLIENT_SECRET')
-
+CLIENT_ID = os.getenv('CLIENT_ID')
+CLIENT_SECRET = os.getenv('CLIENT_SECRET')
+#uri = os.getenv('REDIRECT_URI')
 
 @background
-def get_show_handler(id):
-    auth = AuthToken.objects.get(id=1)
-    auth = auth.access_token
-    url = Request('GET', 'https://api.spotify.com/v1/shows/{id}', params= {
-        'authorization': auth,
-        'market': 'US',
-    }).prepare().url
-    return Response({'url':url}, status=status.HTTP_200_OK)
-
 def search_shows(q,offset):
-    sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id=client_id,
-                                                           client_secret=client_secret))
+    sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id=CLIENT_ID,
+                                                           client_secret=CLIENT_SECRET))
 
     results = sp.search(q= 'meta={q}', limit=50, offset=offset, market = MARKET, type = 'show%2Cepisode')
     for show in enumerate(results['shows']['items']):

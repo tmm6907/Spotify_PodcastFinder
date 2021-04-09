@@ -21,7 +21,7 @@ from pages.views import home_view
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_view),
-    path('get-auth-url/', include('spotify_auth.urls')),
+    path('', include('spotify_api.urls')),
     path('', include('paginator.urls')),
     path('api-auth/', include('rest_framework.urls')),
 ]

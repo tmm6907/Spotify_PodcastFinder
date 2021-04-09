@@ -15,10 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from .views import SpotifyAPIView
 
-from .views import AuthURL
 
 urlpatterns = [
-    path('get-auth-url/', AuthURL.as_view()),
-    
+    path('', SpotifyAPIView.as_view())
 ]
