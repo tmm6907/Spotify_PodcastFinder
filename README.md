@@ -1,2 +1,2 @@
 # Spotify_PodcastFinder
-Uses Spotify API to find podcasts relevant to a search by description.
+Uses Spotify API and spotipy to search for podcasts under a specified queryset.
