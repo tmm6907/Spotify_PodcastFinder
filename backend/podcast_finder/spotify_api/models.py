@@ -6,12 +6,13 @@ show_types = (
     ('episodes', 'episodes'),
 )
 class Show(models.Model):
-    show_id             = models.CharField(max_length = 25)
+    show_id             = models.CharField(max_length = 25, primary_key=True)
     name                = models.CharField(max_length = 48)
     description         = models.TextField()
     languages           = models.TextField(default = 'NULL')
     show_type           = models.CharField(max_length = 8, choices = show_types)
 
+#Expansion Opportunity to broaden search to include episode
 # class Episode(models.Model):
 #     show_id             = models.CharField(max_length = 25)
 #     name                = models.CharField(max_length = 48)
